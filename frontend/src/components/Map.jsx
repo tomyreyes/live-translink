@@ -8,7 +8,7 @@ const mapBoxToken =
 class Map extends Component {
   state = {
     viewport: {
-      width: 1200,
+      width: 1600,
       height: 1000,
       latitude: 37.7577,
       longitude: -122.4376,
