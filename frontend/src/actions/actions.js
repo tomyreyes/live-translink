@@ -6,3 +6,4 @@ const changeCenter = (coordinates) => {
     payload: coordinates
   }
 }
+

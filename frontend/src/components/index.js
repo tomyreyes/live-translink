@@ -1,3 +1,4 @@
 import Map from './Map'
+import Search from './Search'
 
-export default Map 
+export { Map, Search } 
