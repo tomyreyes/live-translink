@@ -16,7 +16,8 @@ class Search extends Component {
 
   searchText = () => {
     //api call get coordinates
-    //from this send the coordinates to store to update state? 
+    //from this send the coordinates to store to update state dispatch action
+    
   }
 
 
