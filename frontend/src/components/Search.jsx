@@ -4,16 +4,10 @@ import { reduxForm, Field } from 'redux-form'
 
 
 class Search extends Component {
-  
-  searchText = () => {
-    //api call get coordinates
-    //from this send the coordinates to store to update state dispatch action
-    
-  }
-
   render() {
+    const { handleSubmit } = this.props
     return (
-      <form>
+      <form onSubmit = {handleSubmit}>
         <label>Enter Location</label>
         <Field name="location" component="input" type="text"/>
         </form>

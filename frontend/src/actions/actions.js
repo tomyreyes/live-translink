@@ -13,13 +13,13 @@ const changeCenter = (coordinates) => {
   }
 }
 
-const requestCoords = () => { 
-  //when user is typing need to be making an autocomplete req? 
-  return {
-    type: REQUEST_COORDS,
-    payload: searchText
-  }
-}
+// const requestCoords = () => { 
+//   //when user is typing need to be making an autocomplete req? 
+//   return {
+//     type: REQUEST_COORDS,
+//     payload: searchText
+//   }
+// }
 
 export const receiveCoords = (searchText) => dispatch => { //dispatch react-thunk allows us to return functions with async api calls 
   let idForCoordinates
