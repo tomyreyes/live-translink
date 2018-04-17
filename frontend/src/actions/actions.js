@@ -20,13 +20,16 @@ const requestCoords = () => {
   }
 }
 
-const receiveCoords = (searchText) => { //I will need to access store to get searchText 
+export const receiveCoords = (searchText) => dispatch => { //dispatch react-thunk allows us to return functions with async api calls 
+  let idForCoordinates
   axios({
-    method:'GET',
-    
-  })
-  return {
-    type: RECEIVE_COORDS,
-    payload: response.data 
-  }
+    method: 'GET',
+    url: 'https://maps.googleapis.com/maps/api/place/queryautocomplete/json',
+    params: {
+      key: 'AIzaSyDK5cgjI7DpnkOJrbLuXUcx6FA2KPl72Jw',
+      input: 'Vancouver, BC'
+    }
+  }).then(result =>
+    idForCoordinates = result.data.predictions[0].place_id
+  ) //with id I will then use it to obtain coordinates. 
 }

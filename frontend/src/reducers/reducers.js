@@ -12,7 +12,7 @@ const mapCoordinates = (state = initialState, action) => {
     case REQUEST_COORDS: 
     return {
       ...state,
-      searchText: action.payload
+      searchText: action.payload 
     } 
     case RECEIVE_COORDS:
     return {
@@ -32,3 +32,4 @@ const rootReducer = combineReducers({
 
 export default rootReducer 
 
+ 

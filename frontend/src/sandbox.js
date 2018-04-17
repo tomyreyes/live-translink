@@ -8,5 +8,5 @@ const result = axios({
     input:'Vancouver, BC'
   }
 }).then(success => {
-  console.log(success)
+  console.log(success.data.predictions[0].place_id)
 })
