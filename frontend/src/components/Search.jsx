@@ -1,19 +1,10 @@
 import React, { Component } from 'react'
+import { reduxForm, Field } from 'redux-form'
 
 
 
 class Search extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      //get state of searchText 
-    }
-  }
-
-  setText = () => {
-    //hook up to action????
-  }
-
+  
   searchText = () => {
     //api call get coordinates
     //from this send the coordinates to store to update state dispatch action
@@ -22,10 +13,14 @@ class Search extends Component {
 
   render() {
     return (
-      <div>
-     <input></input>
-     </div>
+      <form>
+        <label>Enter Location</label>
+        <Field name="location" component="input" type="text"/>
+        </form>
     )
   }
 }
+Search = reduxForm({
+  form: 'search'
+})(Search)
 export default Search

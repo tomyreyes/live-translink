@@ -14,6 +14,7 @@ const changeCenter = (coordinates) => {
 }
 
 const requestCoords = () => { 
+  //when user is typing need to be making an autocomplete req? 
   return {
     type: REQUEST_COORDS,
     payload: searchText
@@ -26,8 +27,8 @@ export const receiveCoords = (searchText) => dispatch => { //dispatch react-thun
     method: 'GET',
     url: 'https://maps.googleapis.com/maps/api/place/queryautocomplete/json',
     params: {
-      key: 'AIzaSyDK5cgjI7DpnkOJrbLuXUcx6FA2KPl72Jw',
-      input: 'Vancouver, BC'
+      key: 'AIzaSyDK5cgjI7DpnkOJrbLuXUcx6FA2KPl72Jw', //hide this 
+      input: searchText
     }
   }).then(result =>
     idForCoordinates = result.data.predictions[0].place_id

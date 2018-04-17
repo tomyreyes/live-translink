@@ -1,5 +1,6 @@
 import { REQUEST_COORDS, RECEIVE_COORDS } from "../actions/actions";
 import { combineReducers } from 'redux'
+import { reducer as formReducer} from 'redux-form'
 
 const initialState = {
   latitude: 49.287,
@@ -26,7 +27,8 @@ const mapCoordinates = (state = initialState, action) => {
 }
 
 const rootReducer = combineReducers({
-  mapCoordinates
+  mapCoordinates,
+  form: formReducer
 
 })
 
