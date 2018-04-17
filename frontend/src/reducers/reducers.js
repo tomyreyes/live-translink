@@ -3,15 +3,23 @@ import { combineReducers } from 'redux'
 
 const initialState = {
   latitude: 49.287,
-  longitude: -123.1207
+  longitude: -123.1207,
+  searchText: ''
   //place default coordinates here? 
 }
 const mapCoordinates = (state = initialState, action) => {
   switch (action.type){
     case REQUEST_COORDS: 
-    return //what do i return here? 
+    return {
+      ...state,
+      searchText: action.payload
+    } 
     case RECEIVE_COORDS:
-    return // return a change to the coordinates state 
+    return {
+      ...state,
+      latitude: action.payload,
+      longitude: action.payload
+    }
   default: 
     return state
   }
