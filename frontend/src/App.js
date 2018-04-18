@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Search/>
+        <Search onSubmit={this.log}/>
         <Map/>
         </div>
     );
