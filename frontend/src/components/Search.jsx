@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { reduxForm, Field, SubmissionError } from 'redux-form'
+import { PlaceField } from './PlaceField';
+
 
 
 class Search extends Component {
+
   renderField = ({ label, input, meta: { touched, error } }) => (
     <div className="input-row">
       <label>{label}</label>
@@ -22,16 +25,16 @@ class Search extends Component {
       })
     })
   }
-  
+
   render() {
-    console.log(this.props)
+    console.log(PlaceField)
     const { handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit(this.mySubmit)}>
         <Field
           name="location"
           label={'Location'}
-          component={this.renderField}
+          component={ PlaceField }
           type="text"
         />
       </form>
