@@ -6,15 +6,7 @@ import { PlaceField } from './PlaceField';
 
 
 class Search extends Component {
-
-  renderField = ({ label, input, meta: { touched, error } }) => (
-    <div className="input-row">
-      <label>{label}</label>
-      <input placeholder="Enter Location..." {...input} type="text" />
-      {touched && error && <span className="error">{error}</span>}
-    </div>
-  )
-
+  
   mySubmit = ({ location }, dispatch) => {
     return new Promise((resolve, reject)=> {
       dispatch({
@@ -27,7 +19,6 @@ class Search extends Component {
   }
 
   render() {
-    console.log(PlaceField)
     const { handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit(this.mySubmit)}>

@@ -1,12 +1,10 @@
 import React from 'react'
 import PlacesAutocomplete from 'react-places-autocomplete'
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 
-// const AutocompleteItem = ({ formattedSuggestion }) => (
-//   <div>
-//     <strong>{formattedSuggestion.mainText}</strong>{' '}
-//     <small>{formattedSuggestion.secondaryText}</small>
-//   </div>
-// )
+
+
+
 const renderFunc = ({ getInputProps, getSuggestionItemProps, suggestions }) => (
   <div className="autocomplete-root">
     <input {...getInputProps()} />
@@ -20,6 +18,15 @@ const renderFunc = ({ getInputProps, getSuggestionItemProps, suggestions }) => (
   </div>
 )
 
+const handleSelect = (address) => {
+  geocodeByAddress(address)
+    .then(results => getLatLng(results[0]))
+    .then(({ lat, lng }) => 
+      console.log('Successfully got latitude and longitude', { lat, lng })
+    )
+}
+
+
 export const PlaceField = ({
   input,
   label,
@@ -31,8 +38,8 @@ export const PlaceField = ({
 
   return <div>
       <label>{label}</label>
-      <PlacesAutocomplete id={id} {...input} {...rest} typeAhead={false} inputName={input.name}>
-      {renderFunc}
+      <PlacesAutocomplete id={id} {...input} {...rest} typeAhead={false} inputName={input.name} onSelect={handleSelect}>
+        {renderFunc}
       </PlacesAutocomplete>
     </div>
 }
