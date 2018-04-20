@@ -3,6 +3,7 @@ import PlacesAutocomplete from 'react-places-autocomplete'
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 import { connect } from 'react-redux'
 import { changeCenter } from '../actions/actions';
+import { bindActionCreators } from 'redux'
 import store from '../store/store'
 
 
@@ -23,10 +24,9 @@ const handleSelect = (address) => {
   geocodeByAddress(address)
     .then(results => getLatLng(results[0]))
     .then(({ lat, lng }) => 
-    store.dispatch(changeCenter({lat, lng})),
-     console.log(store.getState())
+      store.dispatch(changeCenter({lat, lng})),
+      console.log(store.getState())
     )
-   
 }
 
 export const PlaceField = ({
@@ -38,7 +38,6 @@ export const PlaceField = ({
   const hasError = touched && error
   const id = input.name
 
-
   return <div>
       <label>{label}</label>
       <PlacesAutocomplete id={id} {...input} {...rest} typeAhead={false} inputName={input.name} onSelect={handleSelect}>
@@ -47,4 +46,14 @@ export const PlaceField = ({
     </div>
 }
 
-export default connect()(PlaceField)
+const mapStateToProps= (state) => {
+  return {
+    mapCoordinates: state.mapCoordinates
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({changeCenter: changeCenter}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlaceField)

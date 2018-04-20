@@ -8,11 +8,9 @@ const initialState = {
 }
 
 export const mapCoordinates = (state = initialState, action) => {
-  switch (action) {
+  switch (action.type) {
     case CHANGE_CENTER: 
-    return {
-      coordinates: action.coordinates //this is broken 
-    } 
+    return action.payload
   default: 
     return state
   }

@@ -8,6 +8,6 @@ export const changeCenter = (coordinates) => {
   console.log(coordinates)
   return { 
     type: CHANGE_CENTER,
-    coordinates
+    payload: coordinates
   }
 }
