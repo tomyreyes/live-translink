@@ -1,23 +1,19 @@
-import { RECEIVE_COORDS } from "../actions/actions";
-
+import { CHANGE_CENTER } from "../actions/actions";
+import { PlaceField } from "../components/PlaceField";
+import { connect } from 'react-redux'
+import changeCenter from '../actions/actions'
 
 const initialState = {
-  latitude: 49.287,
-  longitude: -123.1207,
-  searchText: ''
+  coordinates:{},
 }
+
 export const mapCoordinates = (state = initialState, action) => {
   switch (action) {
-    case RECEIVE_COORDS: 
+    case CHANGE_CENTER: 
     return {
-      ...state,
-      searchText: action.payload 
+      coordinates: action.coordinates //this is broken 
     } 
   default: 
     return state
   }
 }
-
-
-
- 

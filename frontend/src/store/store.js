@@ -7,6 +7,7 @@ const sagaMiddleware = createSagaMiddleware()
 let store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
 
 console.log(store.getState())
+
 sagaMiddleware.run(getCoordinatesSaga)
 
 export default store

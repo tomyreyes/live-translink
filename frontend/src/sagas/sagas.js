@@ -2,6 +2,8 @@ import { call, put, takeLatest} from 'redux-saga/effects'
 import { RECEIVE_COORDS } from '../actions/actions'
 import request from 'superagent'
 
+//this is all pretty irrelevant atm, will be used for translink api 
+
 const getCoordinates = (location) =>{
   //could do autocomplete here first 
   const url = 'https://maps.googleapis.com/maps/api/place/queryautocomplete/json'
@@ -15,7 +17,7 @@ const getCoordinates = (location) =>{
 }
 
 function* callGetCoordinates({location, resolve, reject}) {
-
+  
   const result = yield call(getCoordinates, location)
   console.log(location, result)
   if(result) {
@@ -26,7 +28,6 @@ function* callGetCoordinates({location, resolve, reject}) {
      yield call(reject, {location: 'No data for location'})
   }   
 }
-
 
 function* getCoordinatesSaga() {
   yield takeLatest(RECEIVE_COORDS, callGetCoordinates);

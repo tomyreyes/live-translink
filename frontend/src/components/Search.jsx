@@ -7,17 +7,9 @@ import { PlaceField } from './PlaceField';
 
 class Search extends Component {
   
-  mySubmit = ({ location }, dispatch) => {
-    return new Promise((resolve, reject)=> {
-      dispatch({
-        type: 'RECEIVE_COORDS',
-        location,
-        resolve,
-        reject
-      })
-    })
+  mySubmit = ({ location }) => {
+    console.log(location)
   }
-
   render() {
     const { handleSubmit } = this.props
     return (

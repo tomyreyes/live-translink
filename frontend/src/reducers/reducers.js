@@ -3,7 +3,7 @@ import { reducer as formReducer } from 'redux-form'
 import { mapCoordinates } from './MapCoordinates'
 
 const rootReducer = combineReducers({
-  mapCoordinates,
+  mapCoordinates: mapCoordinates, 
   form: formReducer
 })
 
