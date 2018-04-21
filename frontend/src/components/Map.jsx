@@ -1,5 +1,6 @@
 import React,{ Component } from 'react'
 import ReactMapGL from 'react-map-gl'
+import { connect } from 'react-redux'
 
 const mapBoxToken =
   'pk.eyJ1IjoidG9teTE0MyIsImEiOiJjamZ5Z3M4YjIwMXNtMzNueHVwMGd6dTloIn0.z_yPSWapeXLaixPPUcpI-A'
@@ -15,6 +16,8 @@ class Map extends Component {
       zoom: 12
     }
   }
+  //currently I am listening to state changes in store
+  //need to find a way to change lat and long when that occurs
 
   render() {
     return (
@@ -27,4 +30,7 @@ class Map extends Component {
     )
   }
 }
-export default Map
+const mapStateToProps = state => {
+  console.log(state)
+}
+export default connect(mapStateToProps)(Map)

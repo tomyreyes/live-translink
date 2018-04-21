@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { reduxForm, Field, SubmissionError } from 'redux-form'
-import { PlaceField } from './PlaceField';
+import PlaceField  from './PlaceField';
+
 
 
 
@@ -11,6 +12,7 @@ class Search extends Component {
     console.log(location)
   }
   render() {
+
     const { handleSubmit } = this.props
     return (
       <form onSubmit={handleSubmit(this.mySubmit)}>
@@ -41,4 +43,5 @@ Search = reduxForm({
   validate 
 })(Search)
 
-export default connect()(Search)
+
+export default Search
