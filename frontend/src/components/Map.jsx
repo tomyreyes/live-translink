@@ -10,11 +10,8 @@ class Map extends Component {
     super()
     this.state = {
       viewport: {
-        width: 1600,
-        height: 1000,
         latitude: 37.7577,
         longitude: -122.4376,
-        zoom: 12
       }
     }
   }
@@ -23,11 +20,8 @@ class Map extends Component {
     if (prevProps !== this.props) {
       this.setState({
         viewport: {
-          width: 1600,
-          height: 1000,
           latitude: this.props.mapCoordinates.lat,
           longitude: this.props.mapCoordinates.lng,
-          zoom: 12
         }
       })
     }
@@ -38,6 +32,9 @@ class Map extends Component {
     return (
       <ReactMapGL
         {...this.state.viewport}
+        width ={1600}
+        height = {1000}
+        zoom={12}
         mapStyle={'mapbox://styles/mapbox/streets-v9'}
         mapboxApiAccessToken={mapBoxToken}
         onViewportChange={viewport => this.setState({ viewport })}
