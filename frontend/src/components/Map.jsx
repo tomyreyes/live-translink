@@ -1,18 +1,25 @@
-import React,{ Component } from 'react'
+import React, { Component } from 'react'
 import ReactMapGL from 'react-map-gl'
 import { connect } from 'react-redux'
 
 const mapBoxToken =
   'pk.eyJ1IjoidG9teTE0MyIsImEiOiJjamZ5Z3M4YjIwMXNtMzNueHVwMGd6dTloIn0.z_yPSWapeXLaixPPUcpI-A'
 
-
 class Map extends Component {
   constructor() {
     super()
-    this.state = { viewport: { width: 1600, height: 1000, latitude: 37.7577, longitude: -122.4376, zoom: 12 } }
+    this.state = {
+      viewport: {
+        width: 1600,
+        height: 1000,
+        latitude: 37.7577,
+        longitude: -122.4376,
+        zoom: 12
+      }
+    }
   }
-  
-  componentDidUpdate(prevProps){
+
+  componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       this.setState({
         viewport: {
@@ -26,15 +33,12 @@ class Map extends Component {
     }
   }
 
-  //for translink api, i need to listen for map coordinate changes, from this render out translink locations. 
-  //start with rendering out transit points from initial coordinates, work from there
-
   render() {
     console.log(this.props.mapCoordinates)
     return (
       <ReactMapGL
         {...this.state.viewport}
-        mapStyle = {'mapbox://styles/mapbox/streets-v9'}
+        mapStyle={'mapbox://styles/mapbox/streets-v9'}
         mapboxApiAccessToken={mapBoxToken}
         onViewportChange={viewport => this.setState({ viewport })}
       />
