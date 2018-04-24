@@ -16,6 +16,14 @@ class Map extends Component {
     }
   }
 
+  componentWillMount(){
+    //where I will put a fetchData action 
+    //i could try changeCenter({lat, lng}) ?? 
+  }
+
+
+
+
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       this.setState({
