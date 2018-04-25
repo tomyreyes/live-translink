@@ -24,7 +24,10 @@ function fetchStops(coordinates){
 function* callFetchStops(coordinates) {
   console.log('hello')
     const result = yield call(fetchStops, coordinates)
-    console.log(result) 
+    let tomy = result.map(cord => {
+      
+    })
+
 }
 
 
