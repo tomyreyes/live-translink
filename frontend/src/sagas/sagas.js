@@ -6,21 +6,19 @@ const key = 'S6i8bxWApJSAiWqp7Xwr'
 
 function fetchStops(coordinates){
   const {lat, lng} = coordinates.payload
-  console.log(lat)
+  console.log(lat.toFixed(6), lng.toFixed(6))
 
-  return (
-    request
-      .get(`http://api.translink.ca/rttiapi/v1/stops?apikey=${key}`)
-      .set('Accept', 'application/json')
-      .query({ lat: lat, long: lng, radius: 500 })
-      .then(res => {
-        console.log(res)
-        return res
-      })
-      .catch(error => {
-        console.log(error)
-      })
-  )
+  return request
+    .get('http://api.translink.ca/rttiapi/v1/stops?')
+    .set('Accept', 'application/json')
+    .query({ apiKey: key, lat: lat.toFixed(6), long: lng.toFixed(6) }) // only accepts digits 6 past decimal 
+    .then(res => {
+      console.log(res)
+      return res.body
+    })
+    .catch(error => {
+      console.log(error)
+    })
 }
 
 function* callFetchStops(coordinates) {
