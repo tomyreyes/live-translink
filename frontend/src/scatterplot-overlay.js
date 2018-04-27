@@ -1,7 +1,5 @@
 import { Component, createElement } from 'react'
 import PropTypes from 'prop-types'
-
-import Immutable from 'immutable'
 /* global window */
 
 function round(x, n) {
@@ -10,7 +8,8 @@ function round(x, n) {
 }
 
 const propTypes = {
-  // lngLatAccessor: PropTypes.func,
+  // locations: PropTypes.instanceOf(Immutable.List).isRequired,
+  lngLatAccessor: PropTypes.func,
   renderWhileDragging: PropTypes.bool,
   globalOpacity: PropTypes.number,
   dotRadius: PropTypes.number,
@@ -19,8 +18,11 @@ const propTypes = {
 }
 
 const defaultProps = {
-  // lngLatAccessor: location => [location.get(0), location.get(1)],
-  renderWhileDragging: true,
+  lngLatAccessor: location => {
+    console.log(location)
+    return [location[0], location[1]]
+  },
+  renderWhileDragging: false,
   dotRadius: 4,
   dotFill: '#1FBAD6',
   globalOpacity: 1,
@@ -53,7 +55,7 @@ export default class ScatterplotOverlay extends Component {
       locations,
       lngLatAccessor
     } = this.props
-
+    console.log(renderWhileDragging, locations)
     const pixelRatio = window.devicePixelRatio || 1
     const canvas = this.refs.overlay
     const ctx = canvas.getContext('2d')
@@ -63,9 +65,9 @@ export default class ScatterplotOverlay extends Component {
     ctx.clearRect(0, 0, viewport.width, viewport.height)
     ctx.globalCompositeOperation = compositeOperation
 
-    if ((renderWhileDragging || !isDragging) && locations) {
+    if (true) {
       for (const location of locations) {
-        const pixel = viewport.project(location)
+        const pixel = viewport.project([80, -100])
         const pixelRounded = [round(pixel[0], 1), round(pixel[1], 1)]
         if (
           pixelRounded[0] + dotRadius >= 0 &&
@@ -86,12 +88,15 @@ export default class ScatterplotOverlay extends Component {
   /* eslint-enable max-statements */
 
   render() {
-    console.log(this.context)
+    
     const {
-      viewport: { width, height }
+      viewport: { width, height },
+      isDragging
     } = this.context
     const { globalOpacity } = this.props
     const pixelRatio = window.devicePixelRatio || 1
+
+    console.log(this.context)
     return createElement('canvas', {
       ref: 'overlay',
       width: width * pixelRatio,

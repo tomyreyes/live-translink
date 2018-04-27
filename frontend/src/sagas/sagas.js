@@ -7,7 +7,6 @@ const key = 'S6i8bxWApJSAiWqp7Xwr'
 function fetchStops(coordinates){
   const {lat, lng} = coordinates.payload
   console.log(lat.toFixed(6), lng.toFixed(6))
-
   return request
     .get('http://api.translink.ca/rttiapi/v1/stops?')
     .set('Accept', 'application/json')

@@ -11,10 +11,10 @@ class Map extends Component {
     super()
     this.state = {
       viewport: {
-        latitude: 37.7577,
-        longitude: -122.4376
+        latitude: 49,
+        longitude: -123
       },
-      locations: [[49, -123], [48, -124]]
+      locations: [[49, -123]]
     }
   }
 
@@ -46,6 +46,7 @@ class Map extends Component {
         mapboxApiAccessToken={mapBoxToken}
         onViewportChange={viewport => this.setState({ viewport })}
       >
+      ()
       <ScatterplotOverlay
       locations={this.state.locations}
       dotRadius={1}
