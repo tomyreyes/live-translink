@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import ReactMapGL from 'react-map-gl'
 import { connect } from 'react-redux'
-import ScatterplotOverlay from '../scatterplot-overlay'
 
 const mapBoxToken =
   'pk.eyJ1IjoidG9teTE0MyIsImEiOiJjamZ5Z3M4YjIwMXNtMzNueHVwMGd6dTloIn0.z_yPSWapeXLaixPPUcpI-A'
@@ -13,8 +12,7 @@ class Map extends Component {
       viewport: {
         latitude: 49,
         longitude: -123
-      },
-      locations: [[49, -123]]
+      }
     }
   }
 
@@ -45,17 +43,7 @@ class Map extends Component {
         mapStyle={'mapbox://styles/mapbox/streets-v9'}
         mapboxApiAccessToken={mapBoxToken}
         onViewportChange={viewport => this.setState({ viewport })}
-      >
-      ()
-      <ScatterplotOverlay
-      locations={this.state.locations}
-      dotRadius={1}
-      globalOpacity={0.8}
-      compositeOperation="lighter"
-      dotFill="blue"
-      renderWhileDragging={true}
-    />
-      </ReactMapGL>
+      />
     )
   }
 }
