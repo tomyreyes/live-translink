@@ -8,18 +8,12 @@ const mapBoxToken =
 class Map extends Component {
   constructor() {
     super()
-    this.state = {
-      viewport: {
-        latitude: 49,
-        longitude: -123
-      }
-    }
+    this.state = { viewport: { latitude: 49.2827, longitude: -123.1207 } }
   }
 
-  componentWillMount() {
-    //where I will put a fetchData action
-    //i could try changeCenter({lat, lng}) ??
-  }
+  // componentWillMount() { // this is where I will call using geolocation coords ? 
+  //   this.props.fetchCoordinates
+  // }
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
@@ -33,7 +27,6 @@ class Map extends Component {
   }
 
   render() {
-    console.log(this.props.mapCoordinates)
     return (
       <ReactMapGL
         {...this.state.viewport}
@@ -50,7 +43,10 @@ class Map extends Component {
 
 const mapStateToProps = state => {
   return {
-    mapCoordinates: state.mapCoordinates
+    mapCoordinates: state.mapCoordinates,
+    stopCoordinates: state.stopCoordinates
   }
 }
+
+
 export default connect(mapStateToProps)(Map)

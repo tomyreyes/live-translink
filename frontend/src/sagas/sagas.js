@@ -1,5 +1,5 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { CHANGE_CENTER } from '../actions/actions';
+import { CHANGE_CENTER, FETCH_COORDINATES } from '../actions/actions';
 import request from 'superagent'
 
 const key = 'S6i8bxWApJSAiWqp7Xwr'
@@ -21,14 +21,15 @@ function fetchStops(coordinates){
 }
 
 function* callFetchStops(coordinates) {
-  console.log('hello')
+
     const result = yield call(fetchStops, coordinates)
-    let tomy = result.map(cord => {
-      
+    let arrStops = result.map(cords => {
+      let arr = []
+      arr.push(cords.Latitude, cords.Longitude)
+      return arr
     })
-
+    yield put({type: FETCH_COORDINATES, payload: arrStops})
 }
-
 
 function* mapSaga() {
   yield takeLatest(CHANGE_CENTER, callFetchStops)
