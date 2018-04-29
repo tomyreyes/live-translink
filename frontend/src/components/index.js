@@ -1,5 +1,6 @@
 import Map from './Map'
 import Search from './Search'
+import DeckGLOverlay from './DeckGLOverlay'
 
 
-export { Map, Search } 
+export { DeckGLOverlay, Map, Search } 
