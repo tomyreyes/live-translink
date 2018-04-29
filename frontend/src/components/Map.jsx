@@ -33,6 +33,7 @@ class Map extends Component {
   }
 
   _onViewportChange(viewport) {
+    //set dispatch to get bus
     this.setState({
       viewport: { ...this.state.viewport, ...viewport },
       data: this.props.stopCoordinates
@@ -42,7 +43,8 @@ class Map extends Component {
   //   this.props.fetchCoordinates
   // }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState) {
+    
     if (prevProps !== this.props) {
       this.setState({
         viewport: {
@@ -56,10 +58,11 @@ class Map extends Component {
   }
 
   render() {
-    console.log(this.props.stopCoordinates)
-    console.log(this.state.data)
+   
 
     const { viewport } = this.state
+
+  
     return (
       <ReactMapGL
         {...viewport}
