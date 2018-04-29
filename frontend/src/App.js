@@ -4,12 +4,10 @@ import Change from './reducers/MapCoordinates'
 import PlaceField from './components/PlaceField';
 class App extends Component {
   render() {
-    return (
-      <div>
-        <Search onSubmit={this.log}/>
-        <Map/>
-        </div>
-    );
+    return <div>
+        <Search onSubmit={this.log} />
+        <Map />
+      </div>
   }
 }
 

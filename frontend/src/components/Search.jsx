@@ -14,13 +14,18 @@ class Search extends Component {
   render() {
 
     const { handleSubmit } = this.props
+    const styles = {
+      textAlign:'center',
+      
+    }
     return (
-      <form onSubmit={handleSubmit(this.mySubmit)}>
+      <form style={styles} onSubmit={handleSubmit(this.mySubmit)}>
         <Field
           name="location"
           label={'Location'}
           component={ PlaceField }
           type="text"
+          
         />
       </form>
     )

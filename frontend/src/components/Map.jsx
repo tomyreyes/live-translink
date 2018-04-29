@@ -67,6 +67,10 @@ class Map extends Component {
   render() {
    
     const { viewport } = this.state
+    console.log(viewport)
+    const styles = {
+      marginLeft:'70px'
+    }
 
     return (
       <ReactMapGL
@@ -77,6 +81,7 @@ class Map extends Component {
         mapStyle={'mapbox://styles/mapbox/streets-v9'}
         mapboxApiAccessToken={mapBoxToken}
          onViewportChange={this._onViewportChange.bind(this)}
+         style={styles}
       >
         <DeckGLOverlay
           viewport={viewport}
