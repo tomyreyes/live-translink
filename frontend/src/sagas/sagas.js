@@ -21,7 +21,7 @@ function fetchStops(coordinates){
 }
 
 function* callFetchStops(coordinates) {
-
+    
     const result = yield call(fetchStops, coordinates)
     let arrStops = result.map(cords => {
       let arr = []

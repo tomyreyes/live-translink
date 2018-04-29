@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ReactMapGL from 'react-map-gl'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { changeCenter } from '../actions/actions'
 import DeckGLOverlay from './DeckGLOverlay'
 const mapBoxToken =
   'pk.eyJ1IjoidG9teTE0MyIsImEiOiJjamZ5Z3M4YjIwMXNtMzNueHVwMGd6dTloIn0.z_yPSWapeXLaixPPUcpI-A'
@@ -33,15 +35,20 @@ class Map extends Component {
   }
 
   _onViewportChange(viewport) {
-    //set dispatch to get bus
+    // let lat = this.state.viewport.latitude
+    // let lng = this.state.viewport.longitude
+    // this.props.changeCenter({lat, lng})
     this.setState({
       viewport: { ...this.state.viewport, ...viewport },
       data: this.props.stopCoordinates
     })
   }
-  // componentWillMount() { // this is where I will call using geolocation coords ?
-  //   this.props.fetchCoordinates
-  // }
+  componentWillMount() { // this is where I will call using geolocation coords ?
+    //this.props.dispatch(viewport coords)
+    let lat = this.state.viewport.latitude
+    let lng = this.state.viewport.longitude
+    this.props.changeCenter({lat, lng})
+  }
 
   componentDidUpdate(prevProps, prevState) {
     
@@ -59,14 +66,12 @@ class Map extends Component {
 
   render() {
    
-
     const { viewport } = this.state
 
-  
     return (
       <ReactMapGL
         {...viewport}
-        width={1000}
+        width={1600}
         height={1000}
         zoom={13}
         mapStyle={'mapbox://styles/mapbox/streets-v9'}
@@ -93,5 +98,11 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
 
-export default connect(mapStateToProps)(Map)
+  return bindActionCreators({
+    changeCenter: changeCenter
+  }, dispatch);
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map)
