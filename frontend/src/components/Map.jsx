@@ -35,16 +35,15 @@ class Map extends Component {
   }
 
   _onViewportChange(viewport) {
-    // let lat = this.state.viewport.latitude
-    // let lng = this.state.viewport.longitude
-    // this.props.changeCenter({lat, lng})
+    let lat = this.state.viewport.latitude
+    let lng = this.state.viewport.longitude
+    this.props.changeCenter({lat, lng}) //this needs to be refactored to save api reqs
     this.setState({
       viewport: { ...this.state.viewport, ...viewport },
       data: this.props.stopCoordinates
     })
   }
   componentWillMount() { // this is where I will call using geolocation coords ?
-    //this.props.dispatch(viewport coords)
     let lat = this.state.viewport.latitude
     let lng = this.state.viewport.longitude
     this.props.changeCenter({lat, lng})
