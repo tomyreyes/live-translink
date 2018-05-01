@@ -10,10 +10,12 @@ After a period of time, which I will not disclose, I figured out that when makin
 
 - [react-redux](https://github.com/reactjs/react-redux)
 - [Redux Form](https://redux-form.com/7.3.0/)
+- [redux-saga](https://redux-saga.js.org/)
 - [react-map-gl](https://github.com/uber/react-map-gl)
 - [Deck.gl](https://github.com/uber/deck.gl)
 - [react-places-autocomplete](https://github.com/kenny-hibino/react-places-autocomplete)
 - [superagent](https://github.com/visionmedia/superagent)
 ## Future Implementations:
 - geolocation 
+
 
