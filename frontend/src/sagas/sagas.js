@@ -25,7 +25,7 @@ function* callFetchStops(coordinates) {
     const result = yield call(fetchStops, coordinates)
     let arrStops = result.map(cords => {
       let arr = []
-      arr.push(cords.Longitude, cords.Latitude, 1)
+      arr.push(cords.Longitude, cords.Latitude, 2)
       return arr
     })
     yield put({type: FETCH_COORDINATES, payload: arrStops})

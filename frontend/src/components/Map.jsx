@@ -35,9 +35,9 @@ class Map extends Component {
   }
 
   _onViewportChange(viewport) {
-    let lat = this.state.viewport.latitude
-    let lng = this.state.viewport.longitude
-    this.props.changeCenter({lat, lng}) //this needs to be refactored to save api reqs
+    // let lat = this.state.viewport.latitude
+    // let lng = this.state.viewport.longitude
+    // this.props.changeCenter({lat, lng}) //this needs to be refactored to save api reqs
     this.setState({
       viewport: { ...this.state.viewport, ...viewport },
       data: this.props.stopCoordinates
@@ -47,24 +47,26 @@ class Map extends Component {
     let lat = this.state.viewport.latitude
     let lng = this.state.viewport.longitude
     this.props.changeCenter({lat, lng})
+    data: this.state.data
   }
 
   componentDidUpdate(prevProps, prevState) {
-    
+
     if (prevProps !== this.props) {
       this.setState({
         viewport: {
           latitude: this.props.mapCoordinates.lat,
           longitude: this.props.mapCoordinates.lng
         },
-        data: this.props.stopCoordinates
-        
+        data: this.props.stopCoordinates,
       })
     }
   }
 
   render() {
-   
+    console.log(window.innerHeight, window.innerWidth)
+    console.log( this.state.viewport)
+
     const { viewport } = this.state
     console.log(viewport)
     const styles = {
@@ -108,5 +110,4 @@ const mapDispatchToProps = (dispatch) => {
     changeCenter: changeCenter
   }, dispatch);
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(Map)
