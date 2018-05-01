@@ -35,12 +35,16 @@ class Map extends Component {
   }
 
   _onViewportChange(viewport) {
-    let lat = this.state.viewport.latitude
-    let lng = this.state.viewport.longitude
       this.setState({
       viewport: { ...this.state.viewport, ...viewport },
       data: this.props.stopCoordinates
     })
+    }
+  searchStops() {
+
+    let lat = this.state.viewport.latitude
+    let lng = this.state.viewport.longitude
+    this.props.changeCenter({ lat, lng })
   }
 
   componentWillMount() { // this is where I will call using geolocation coords ?
@@ -66,12 +70,21 @@ class Map extends Component {
   render() {
 
     const { viewport } = this.state
-    console.log(viewport)
     const styles = {
+      reactMapGl: {
       marginLeft:'70px'
+      },
+      button:{
+         marginLeft:'883px'
+      }
+
     }
 
     return (
+  
+      <div> 
+      <button style={styles.button} onClick={this.searchStops.bind(this)}>Search this area</button>
+       
       <ReactMapGL
         {...viewport}
         width={1600}
@@ -80,8 +93,9 @@ class Map extends Component {
         mapStyle={'mapbox://styles/mapbox/streets-v9'}
         mapboxApiAccessToken={mapBoxToken}
         onViewportChange={this._onViewportChange.bind(this)}
-        style={styles}
+        style={styles.reactMapGl}
       >
+
         <DeckGLOverlay
           viewport={viewport}
           data={this.state.data}
@@ -91,6 +105,9 @@ class Map extends Component {
         />
 
       </ReactMapGL>
+      </div>
+
+      
     )
   }
 }
