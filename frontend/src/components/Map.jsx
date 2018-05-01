@@ -16,7 +16,7 @@ class Map extends Component {
     super(props)
     this.state = {
       viewport: {
-        ...DeckGLOverlay.defaultViewport
+        ...DeckGLOverlay.defaultViewport, transitionDuration:3000
       },
       data: this.props.stopCoordinates
     }
@@ -35,14 +35,14 @@ class Map extends Component {
   }
 
   _onViewportChange(viewport) {
-    // let lat = this.state.viewport.latitude
-    // let lng = this.state.viewport.longitude
-    // this.props.changeCenter({lat, lng}) //this needs to be refactored to save api reqs
-    this.setState({
+    let lat = this.state.viewport.latitude
+    let lng = this.state.viewport.longitude
+      this.setState({
       viewport: { ...this.state.viewport, ...viewport },
       data: this.props.stopCoordinates
     })
   }
+
   componentWillMount() { // this is where I will call using geolocation coords ?
     let lat = this.state.viewport.latitude
     let lng = this.state.viewport.longitude
@@ -51,7 +51,7 @@ class Map extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-
+    
     if (prevProps !== this.props) {
       this.setState({
         viewport: {
@@ -62,10 +62,8 @@ class Map extends Component {
       })
     }
   }
-
+  
   render() {
-    console.log(window.innerHeight, window.innerWidth)
-    console.log( this.state.viewport)
 
     const { viewport } = this.state
     console.log(viewport)
@@ -81,8 +79,8 @@ class Map extends Component {
         zoom={13}
         mapStyle={'mapbox://styles/mapbox/streets-v9'}
         mapboxApiAccessToken={mapBoxToken}
-         onViewportChange={this._onViewportChange.bind(this)}
-         style={styles}
+        onViewportChange={this._onViewportChange.bind(this)}
+        style={styles}
       >
         <DeckGLOverlay
           viewport={viewport}
