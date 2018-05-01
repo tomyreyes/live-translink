@@ -10,7 +10,7 @@ function fetchStops(coordinates){
   return request
     .get('http://api.translink.ca/rttiapi/v1/stops?')
     .set('Accept', 'application/json')
-    .query({ apiKey: key, lat: lat.toFixed(6), long: lng.toFixed(6) }) // only accepts digits 6 past decimal 
+    .query({ apiKey: key, lat: lat.toFixed(6), long: lng.toFixed(6), radius: 2000 }) // only accepts digits 6 past decimal 
     .then(res => {
       console.log(res)
       return res.body

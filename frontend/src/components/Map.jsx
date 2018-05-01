@@ -71,29 +71,22 @@ class Map extends Component {
 
     const { viewport } = this.state
     const styles = {
-      reactMapGl: {
-      marginLeft:'70px'
-      },
-      button:{
          marginLeft:'883px'
-      }
-
     }
 
     return (
-  
       <div> 
-      <button style={styles.button} onClick={this.searchStops.bind(this)}>Search this area</button>
+      <button style={styles} onClick={this.searchStops.bind(this)}>Search this area</button>
        
       <ReactMapGL
         {...viewport}
-        width={1600}
+        width={1880}
         height={1000}
         zoom={13}
         mapStyle={'mapbox://styles/mapbox/streets-v9'}
         mapboxApiAccessToken={mapBoxToken}
         onViewportChange={this._onViewportChange.bind(this)}
-        style={styles.reactMapGl}
+
       >
 
         <DeckGLOverlay
