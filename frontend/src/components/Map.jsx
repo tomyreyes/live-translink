@@ -64,7 +64,7 @@ class Map extends Component {
         viewport: {
           latitude: this.props.mapCoordinates.lat,
           longitude: this.props.mapCoordinates.lng,
-          height: 1000,
+          height: 1200,
           width: 1880,
           zoom: 13
         },
@@ -88,7 +88,7 @@ class Map extends Component {
       <ReactMapGL
         {...viewport}
         width={1880}
-        height={1000}
+        height={1200}
         zoom={13}
         mapStyle={'mapbox://styles/mapbox/streets-v9'}
         mapboxApiAccessToken={mapBoxToken}
