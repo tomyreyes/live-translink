@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { changeCenter } from '../actions/actions'
 import DeckGLOverlay from './DeckGLOverlay'
+import { Button } from 'semantic-ui-react'
 const mapBoxToken =
   'pk.eyJ1IjoidG9teTE0MyIsImEiOiJjamZ5Z3M4YjIwMXNtMzNueHVwMGd6dTloIn0.z_yPSWapeXLaixPPUcpI-A'
 
@@ -16,18 +17,19 @@ class Map extends Component {
     super(props)
     this.state = {
       viewport: {
-        ...DeckGLOverlay.defaultViewport, transitionDuration:3000
+        ...DeckGLOverlay.defaultViewport
       },
       data: this.props.stopCoordinates
     }
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this._resize.bind(this))
+    // window.addEventListener('resize', this._resize.bind(this))
     this._resize()
   }
 
   _resize() {
+    console.log('hello')
     this._onViewportChange({
       width: window.innerWidth,
       height: window.innerHeight
@@ -35,23 +37,24 @@ class Map extends Component {
   }
 
   _onViewportChange(viewport) {
+    console.log(this.state.viewport)
       this.setState({
       viewport: { ...this.state.viewport, ...viewport },
       data: this.props.stopCoordinates
     })
     }
-  searchStops() {
 
+  searchStops() {
     let lat = this.state.viewport.latitude
     let lng = this.state.viewport.longitude
     this.props.changeCenter({ lat, lng })
   }
 
-  componentWillMount() { // this is where I will call using geolocation coords ?
+  componentWillMount() {
     let lat = this.state.viewport.latitude
     let lng = this.state.viewport.longitude
     this.props.changeCenter({lat, lng})
-    data: this.state.data
+    
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -60,9 +63,12 @@ class Map extends Component {
       this.setState({
         viewport: {
           latitude: this.props.mapCoordinates.lat,
-          longitude: this.props.mapCoordinates.lng
+          longitude: this.props.mapCoordinates.lng,
+          height: 1000,
+          width: 1880,
+          zoom: 13
         },
-        data: this.props.stopCoordinates,
+        data: this.props.stopCoordinates
       })
     }
   }
@@ -70,13 +76,14 @@ class Map extends Component {
   render() {
 
     const { viewport } = this.state
+    console.log(viewport)
     const styles = {
-         marginLeft:'883px'
+         marginLeft:'860px'
     }
 
     return (
       <div> 
-      <button style={styles} onClick={this.searchStops.bind(this)}>Search this area</button>
+      <Button color='green' style={styles} onClick={this.searchStops.bind(this)}>Search this area</Button>
        
       <ReactMapGL
         {...viewport}
