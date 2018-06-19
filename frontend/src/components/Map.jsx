@@ -24,12 +24,10 @@ class Map extends Component {
   }
 
   componentDidMount() {
-    // window.addEventListener('resize', this._resize.bind(this))
     this._resize()
   }
 
   _resize() {
-    console.log('hello')
     this._onViewportChange({
       width: window.innerWidth,
       height: window.innerHeight
@@ -37,7 +35,6 @@ class Map extends Component {
   }
 
   _onViewportChange(viewport) {
-    console.log(this.state.viewport)
       this.setState({
       viewport: { ...this.state.viewport, ...viewport },
       data: this.props.stopCoordinates
@@ -62,8 +59,8 @@ class Map extends Component {
     if (prevProps !== this.props) {
       this.setState({
         viewport: {
-          latitude: this.props.mapCoordinates.lat,
-          longitude: this.props.mapCoordinates.lng,
+          latitude: this.props.mapCoordinates.coordinates.lat,
+          longitude: this.props.mapCoordinates.coordinates.lng,
           height: 1200,
           width: 1880,
           zoom: 13
@@ -76,7 +73,6 @@ class Map extends Component {
   render() {
 
     const { viewport } = this.state
-    console.log(viewport)
     const styles = {
          marginLeft:'860px'
     }

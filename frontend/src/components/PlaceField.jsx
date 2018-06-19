@@ -23,7 +23,6 @@ const handleSelect = (address) => {
     .then(results => getLatLng(results[0]))
     .then(({ lat, lng }) => 
       store.dispatch(changeCenter({lat, lng})),
-      console.log(store.getState())
     )
 }
 
